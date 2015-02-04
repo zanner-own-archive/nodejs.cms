@@ -9,6 +9,13 @@
   "author": "sergej.kucharev@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "express": "=4.11.2"
+    "debug": ">=2.1.1",
+    "domain": ">=0.0.1",
+    "express": ">=4.11.2",
+    "fs": ">=0.0.2",
+    "mime": ">=1.2.11",
+    "nconf": ">=0.7.1",
+    "path": ">=0.11.14",
+    "url": ">=0.10.2"
   }
 }
