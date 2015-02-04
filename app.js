@@ -1,22 +1,22 @@
 #!/usr/bin/env node
 
-var domain = require('domain');
+var domain = require('domain'), debug;
 var domainApp = domain.create();
-var debug;
+
 domainApp.on('error', function (err) {
 	debug('Error: ', err);
 });
 
-/** /
+/**/
 domainApp.run(function(){
 	debug = require('debug')('app');
-	var port = 4000;
-	debugger;
-	var server = require('server')(port);
+	var conf = require('nconf');
+	conf.argv().env().file(require('path').join(__dirname, 'config.json'));
+	var server = require('server')(conf);
 });
-/**/
-
+/** /
 debug = require('debug')('app');
-var port = 4000;
-debugger;
-var server = require('server')(port);
+var conf = require('nconf');
+conf.argv().env().file(require('path').join(__dirname, 'config.json'));
+var server = require('server')(conf);
+/**/

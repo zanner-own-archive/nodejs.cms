@@ -1,43 +1,32 @@
 #!/usr/bin/env node
 
 var express = require('express');
-var app = express();
-//var domain = require('domain');
-//var domainSrv = domain.create();
+var server = express();
+var domain = require('domain');
+var domainServer = domain.create();
 
-app.get('/*', function(req, res, next){
-	var redirects = {
-		'/b': '/xxx1'
+server.get('/*', function(req, res, next){
+	var r = {
+		'/b': '/xxx12',
+		'/a': '/zxcvbnm'
 	};
-	console.log(req.url);
-	if (req.url in redirects){
-		//res.setHeader() status(301).send('Moved Permanently', 'header('HTTP/1.1 301 Moved Permanently');
-		//header('Location: /b');');
-		res.status(301).header({'Location': redirects[req.url]}).header({'Pragma': 'no-cache'}).send('Moved Permanently');
-	}
+	if (req.url in r) res.status(301).header({'Location': r[req.url], 'Pragma': 'no-cache'}).end('Moved Permanently');
 	else next();
 });
-/*
-app.use(function(err, req, res, next){
+
+server.get('/xyz', function(req, res){
 	if (req.url.match(/[\/].+/)) {
 		res.send('1');
 	}
 	next();
 });
 
-app.use(function(err, req, res, next){
-	if (req.url.match(/[\/]/)) {
-		res.send('2');
-	}
-	next();
-});
-/**/
-app.use(function(req, res){
-	console.log(req);
+server.get('/*', function(req, res){
 	res.end('.');
 });
 
 
-module.exports = function(port){
-	app.listen(port);
+
+module.exports = function(conf){
+	server.listen(conf.get('port'));
 }
