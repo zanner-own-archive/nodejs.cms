@@ -21,6 +21,18 @@ server.get('/static/*', function(req, res){
 	require('serverStatic')(req, res);
 });
 
+server.get('/', function(req, res){
+	res.header({'Pragma': 'no-cache'});
+	//require('moduleFrontPage')(req, res);
+	res.end('frontpage');
+});
+
+server.get('/test', function(req, res){
+	res.header({'Pragma': 'no-cache'});
+	//require('moduleFrontPage')(req, res);
+	res.end('test');
+});
+
 server.get('/*', function(req, res){
 	res.header({'Pragma': 'no-cache'});
 	res.end('.');
