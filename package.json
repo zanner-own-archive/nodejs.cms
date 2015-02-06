@@ -1,7 +1,7 @@
 {
-  "name": "nodejs.app",
+  "name": "nodejs.cms",
   "version": "0.0.0",
-  "description": "",
+  "description": "nodejs.cms",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
