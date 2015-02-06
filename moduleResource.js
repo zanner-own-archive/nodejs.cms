@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 
-var debug = require('debug')('app:server:static');
+var debug = require('debug')('module:resource');
 var fs = require('fs');
 var path = require('path');
 var url = require('url');
 
 module.exports = function(req, res)
 {
+	debug('loading resource: [' + req.url + ']');
+
+	res.header({'Pragma': 'no-cache'});
+
 	var filePath = url.parse(req.url, true);
 	try {
 		filePath = decodeURIComponent(filePath.path);
@@ -40,7 +44,7 @@ module.exports = function(req, res)
 			res.header({'Content-Type': mime + '; charset=utf-8', 'Pragma': 'no-cache'});
 			file.pipe(res);
 			file.on('error', function (err) {
-				res.status(400).end('Unknown file static error');
+				res.status(400).end('Unknown file resource error');
 				debug(err);
 			});
 			res.on('close', function () {
