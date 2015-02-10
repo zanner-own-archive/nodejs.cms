@@ -9,7 +9,7 @@ server.set('views', __dirname + '/templates');
 server.set('view engine', 'ejs');
 
 server.get('/*', function(req, res, next){
-	require('moduleRedirect')(req, res, next);
+	require('moduleRedirects')(req, res, next);
 });
 
 server.get('/', function(req, res){
@@ -17,11 +17,11 @@ server.get('/', function(req, res){
 });
 
 server.get('/resource(/*)?', function(req, res){
-	require('moduleResource')(req, res);
+	require('moduleResources')(req, res);
 });
 
 server.get('/static(/*)?', function(req, res){
-	require('moduleStatic')(req, res);
+	require('moduleContents')(req, res);
 });
 
 server.get('/test(/*)?', function(req, res){
